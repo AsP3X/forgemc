@@ -18,12 +18,7 @@
 
 sleep 4
 
-if [[ "${RAM}" < "4G" ]]; then
-  echo "RAM is less than 4G"
-  echo "Please set RAM to at least 4G"
-  sleep 5
-  exit 0
-fi
+# split the number and the character G
 
 if [[ "${RAM}" ]]; then
   rm -rf /server/user_jvm_args.txt
