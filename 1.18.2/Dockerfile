@@ -52,6 +52,7 @@ COPY ./init.sh /temp/init.sh
 
 RUN chmod -R 777 /serverfiles
 EXPOSE 25565
+EXPOSE 25575
 
 # CMD "/serverfiles/init.sh"
 # CMD [ "/server/start.sh" ]
