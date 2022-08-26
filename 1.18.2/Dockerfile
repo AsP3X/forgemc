@@ -43,6 +43,9 @@ COPY eula.txt /temp
 COPY ./start.sh /temp/start.sh
 COPY ./init.sh /temp/init.sh
 
+RUN chmod +x /temp/start.sh
+RUN chmod +x /temp/init.sh
+
 # Installing ssh-server into image
 # RUN apt update && apt install  openssh-server -y
 # RUN echo 'root:ultimatePassword' | chpasswd
@@ -52,6 +55,7 @@ COPY ./init.sh /temp/init.sh
 
 RUN chmod -R 777 /serverfiles
 EXPOSE 25565
+EXPOSE 25575
 
 # CMD "/serverfiles/init.sh"
 # CMD [ "/server/start.sh" ]
