@@ -18,12 +18,7 @@
 
 sleep 4
 
-if [[ "${RAM}" < "6G" ]]; then
-  echo "RAM is less than 6G"
-  echo "Please set RAM to at least 6G"
-  sleep 5
-  exit 0
-fi
+# split the number and the character G
 
 if [[ "${RAM}" ]]; then
   rm -rf /server/user_jvm_args.txt
@@ -31,28 +26,23 @@ if [[ "${RAM}" ]]; then
 	echo "Using ${RAM}"
   echo "-Xmx${RAM} -Xms${RAM}" >> /server/user_jvm_args.txt
 else
-	echo "Set ram to default of 6G"
+	echo "Set ram to default of 4G"
 	echo "This can be changed later"
-	RAM=6G
+	RAM=4G
   touch /server/user_jvm_args.txt
 	echo "Using ${RAM}"
   echo "-Xmx${RAM} -Xms${RAM}" >> /server/user_jvm_args.txt
 fi
 sleep 1
 
-# get the full filename of the forge jar file and remove the .jar extension
-FULLFILENAME=`ls -1 /server/forge*.jar | tail -n 1`
-echo "Using ${FULLFILENAME}"
-cp /temp/eula.txt /server/eula.txt
-
 SERVERFILE=/server/run.sh
 if test -f "$SERVERFILE"; then
   echo "Starting server..."
-	screen -S Minecraft-Server /bin/sh -c "java -Xmx${RAM} -Xms${RAM} -jar ${FULLFILENAME}"
+	screen -S Minecraft-Server /bin/sh -c "java -Xmx${RAM} -Xms${RAM} -jar papermc.jar"
   # screen -S Minecraft-Server /bin/sh -c "/server/run.sh"
 else
   echo "Creating new Files"
 	sleep 1
-	screen -S Minecraft-Server /bin/sh -c "java -Xmx${RAM} -Xms${RAM} -jar ${FULLFILENAME}"
+	screen -S Minecraft-Server /bin/sh -c "java -Xmx${RAM} -Xms${RAM} -jar papermc.jar"
   # screen -S Minecraft-Server /bin/sh -c "/server/run.sh"
 fi
