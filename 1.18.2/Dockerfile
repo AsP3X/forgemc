@@ -57,6 +57,4 @@ RUN chmod -R 777 /serverfiles
 EXPOSE 25565
 EXPOSE 25575
 
-# CMD "/serverfiles/init.sh"
-# CMD [ "/server/start.sh" ]
 CMD [ "/bin/bash", "/temp/init.sh" ]
